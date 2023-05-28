@@ -1,5 +1,24 @@
 import * as esbuild from 'esbuild-wasm';
 import axios from 'axios';
+import localForage from 'localforage';
+
+const fileCache= localForage.createInstance({
+  name : 'filecache'
+});
+  (async ()=>{
+    await fileCache.setItem('color','red')
+
+    const color = await fileCache.getItem('color')
+
+    console.log(color);
+    
+  })()
+
+
+
+
+
+
 
 export const unpkgPathPlugin = () => {
   return {
@@ -32,9 +51,8 @@ export const unpkgPathPlugin = () => {
             loader: 'jsx',
             contents: `
 
-            import React, {useState} from 'react';
-            import ReactDOM from 'react-dom';
-              console.log(React, ReactDom);
+            import React, {useState} from 'react-select';
+            console.log(React, ReactDom);
             `,
           };
         } 
