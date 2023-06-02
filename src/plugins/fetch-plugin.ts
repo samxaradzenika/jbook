@@ -24,7 +24,7 @@ export const fetchPlugin = (inputCode: string) => {
 
       if (cachedResult) {
         return cachedResult;
-      }
+      } 
     })
 
 
@@ -37,7 +37,7 @@ export const fetchPlugin = (inputCode: string) => {
           .replace(/\n/g, '')
           .replace(/"/g, '\\"')
           .replace(/'/g, "\\'");
-        const contents =
+        const contents = 
           `
             const style = document.createElement('style');
             style.innerText = '${escaped}';
@@ -56,14 +56,6 @@ export const fetchPlugin = (inputCode: string) => {
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
         
-
-        const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
-          args.path
-        );
-
-        if (cachedResult) {
-          return cachedResult;
-        }
         const { data, request } = await axios.get(args.path);
 
         const result: esbuild.OnLoadResult = {
